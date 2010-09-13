@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MakeFile" />
+    <ClCompile Include="Source\GLContextIFacePatcher.cpp" />
+    <ClCompile Include="Source\mglDebugger.cpp" />
+    <ClCompile Include="Source\MiniGLIFacePatcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\GLContextIFacePatcher.h" />
+    <ClInclude Include="Source\MiniGLIFacePatcher.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1C37318A-0A0F-4291-8A0A-4C6E48520BD6}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>mglDebugger.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>DEPRECATED=;APICALL=;__amigaos4__;$(NMakePreprocessorDefinitions);_DEBUG</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\local\common\include;C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\local\newlib\include;C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\Include\include_h;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeBuildCommandLine>make -f MakeFile -j4 2&gt;&amp;1  | sed -u -e 's/\(\w\+\):\([0-9]\+\):/\1(\2):/'</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>make -f MakeFile clean</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>mglDebugger.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>DEPRECATED=;APICALL=;__amigaos4__;$(NMakePreprocessorDefinitions);NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\local\common\include;C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\local\newlib\include;C:\cygwin\usr\local\amiga\ppc-amigaos\SDK\Include\include_h;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeCleanCommandLine>make -f MakeFile clean</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>make -f MakeFile -j4 2&gt;&amp;1  | sed -u -e 's/\(\w\+\):\([0-9]\+\):/\1(\2):/'</NMakeBuildCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,6 @@
+glob:Debug/mglDebugger.log
+relre:.\.o
+relre:.\.suo
+relre:.\.exe
+relre:.\.sdf
+relre:.\.user
