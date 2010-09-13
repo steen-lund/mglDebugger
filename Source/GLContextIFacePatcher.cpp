@@ -4,16 +4,16 @@
 
 
 #define DEFINE_PATCH_FUNCTION(TYPE, NAME, PARAMS) \
-	typedef TYPE(*NAME)PARAMS; \
-	NAME original##NAME = NULL;
+	typedef TYPE(*NAME##_function)PARAMS; \
+	NAME##_function original##NAME##_function = NULL;
 
-#define PATCH_FUNCTION(FUNCTION, ORIGINAL_NAME, PATCHED_NAME) \
-	original##FUNCTION = reinterpret_cast<FUNCTION>(IExec->SetMethod(reinterpret_cast<Interface*>(IGLContext), offsetof(struct GLContextIFace, ORIGINAL_NAME) , reinterpret_cast<APTR>(PATCHED_NAME)));
+#define PATCH_FUNCTION(FUNCTION) \
+	original##FUNCTION##_function = reinterpret_cast<FUNCTION##_function>(IExec->SetMethod(reinterpret_cast<Interface*>(IGLContext), offsetof(struct GLContextIFace, FUNCTION) , reinterpret_cast<APTR>(Patched##FUNCTION)));
 
-DEFINE_PATCH_FUNCTION(void, SwitchDisplay_function, (struct GLContextIFace *self))
-DEFINE_PATCH_FUNCTION(void, GLAlphaFunc_function, (struct GLContextIFace *Self, GLenum func, GLclampf ref))
-DEFINE_PATCH_FUNCTION(void, GLBegin_function, (struct GLContextIFace *Self, GLenum mode))
-DEFINE_PATCH_FUNCTION(void, GLBindTexture_function, (struct GLContextIFace *Self, GLenum target, GLuint texture))
+DEFINE_PATCH_FUNCTION(void, SwitchDisplay, (struct GLContextIFace *self))
+DEFINE_PATCH_FUNCTION(void, GLAlphaFunc, (struct GLContextIFace *Self, GLenum func, GLclampf ref))
+DEFINE_PATCH_FUNCTION(void, GLBegin, (struct GLContextIFace *Self, GLenum mode))
+DEFINE_PATCH_FUNCTION(void, GLBindTexture, (struct GLContextIFace *Self, GLenum target, GLuint texture))
 //typedef void(*GLBlendFunc_function)(struct GLContextIFace *Self, GLenum sfactor, GLenum dfactor);
 //typedef void(*GLClear_function)(struct GLContextIFace *Self, GLbitfield mask);
 //typedef void(*GLClearColor_function)(struct GLContextIFace *Self, GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
@@ -43,7 +43,6 @@ void PatchedGLBegin(struct GLContextIFace* self, GLenum mode)
 
 void PatchGLContextIFace(struct GLContextIFace* IGLContext)
 {
-	PATCH_FUNCTION(SwitchDisplay_function, SwitchDisplay, PatchedSwitchDisplay)
-	PATCH_FUNCTION(GLBegin_function, GLBegin, PatchedGLBegin)
-	//originalSwitchDisplay_function = reinterpret_cast<SwitchDisplay_function>(IExec->SetMethod(reinterpret_cast<Interface*>(IGLContext), offsetof(struct GLContextIFace, SwitchDisplay) , reinterpret_cast<APTR>(PatchedSwitchDisplay)));
+	PATCH_FUNCTION(SwitchDisplay)
+	PATCH_FUNCTION(GLBegin)
 }
