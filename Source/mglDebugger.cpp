@@ -16,10 +16,17 @@ int main()
 	if (IMiniGL == NULL)
 		return false;
 
+	IExec->Forbid();
 	PatchMiniGLIFace(IMiniGL);
+	IExec->Permit();
+
+
+
+
 
 	IDOS->Delay(60 * TICKS_PER_SECOND);
 
+	IExec->Forbid();
 	RestoreMiniGLIFace(IMiniGL);
-
+	IExec->Permit();
 }
