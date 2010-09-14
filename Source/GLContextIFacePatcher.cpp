@@ -14,19 +14,19 @@ DEFINE_PATCH_FUNCTION(void, SwitchDisplay, (struct GLContextIFace *self))
 DEFINE_PATCH_FUNCTION(void, GLAlphaFunc, (struct GLContextIFace *Self, GLenum func, GLclampf ref))
 DEFINE_PATCH_FUNCTION(void, GLBegin, (struct GLContextIFace *Self, GLenum mode))
 DEFINE_PATCH_FUNCTION(void, GLBindTexture, (struct GLContextIFace *Self, GLenum target, GLuint texture))
-//typedef void(*GLBlendFunc_function)(struct GLContextIFace *Self, GLenum sfactor, GLenum dfactor);
-//typedef void(*GLClear_function)(struct GLContextIFace *Self, GLbitfield mask);
-//typedef void(*GLClearColor_function)(struct GLContextIFace *Self, GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
-//typedef void(*GLClearDepth_function)(struct GLContextIFace *Self, GLclampd depth);
-//typedef void(*GLColor4f_function)(struct GLContextIFace *Self, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
-//typedef void(*GLColorTable_function)(struct GLContextIFace *Self, GLenum target, GLenum internalformat, GLint width, GLenum format, GLenum type, const GLvoid* data);
-//typedef void(*GLCullFace_function)(struct GLContextIFace *Self, GLenum mode);
-//typedef void(*GLDeleteTextures_function)(struct GLContextIFace *Self, GLsizei n, const GLuint *textures);
-//typedef void(*GLDepthFunc_function)(struct GLContextIFace *Self, GLenum func);
-//typedef void(*GLDepthMask_function)(struct GLContextIFace *Self, GLboolean flag);
-//typedef void(*GLDepthRange_function)(struct GLContextIFace *Self, GLclampd n, GLclampd f);
-//typedef void(*GLDrawBuffer_function)(struct GLContextIFace *Self, GLenum mode);
-//typedef void(*GLEnd_function)(struct GLContextIFace *Self);
+DEFINE_PATCH_FUNCTION(void, GLBlendFunc, (struct GLContextIFace *Self, GLenum sfactor, GLenum dfactor))
+DEFINE_PATCH_FUNCTION(void, GLClear, (struct GLContextIFace *Self, GLbitfield mask))
+DEFINE_PATCH_FUNCTION(void, GLClearColor, (struct GLContextIFace *Self, GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha))
+DEFINE_PATCH_FUNCTION(void, GLClearDepth, (struct GLContextIFace *Self, GLclampd depth))
+DEFINE_PATCH_FUNCTION(void, glColor4f, (struct GLContextIFace *Self, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha))
+DEFINE_PATCH_FUNCTION(void, GLColorTable, (struct GLContextIFace *Self, GLenum target, GLenum internalformat, GLint width, GLenum format, GLenum type, const GLvoid* data))
+DEFINE_PATCH_FUNCTION(void, GLCullFace, (struct GLContextIFace *Self, GLenum mode))
+DEFINE_PATCH_FUNCTION(void, GLDeleteTextures, (struct GLContextIFace *Self, GLsizei n, const GLuint *textures))
+DEFINE_PATCH_FUNCTION(void, GLDepthFunc, (struct GLContextIFace *Self, GLenum func))
+DEFINE_PATCH_FUNCTION(void, GLDepthMask, (struct GLContextIFace *Self, GLboolean flag))
+DEFINE_PATCH_FUNCTION(void, GLDepthRange, (struct GLContextIFace *Self, GLclampd n, GLclampd f))
+DEFINE_PATCH_FUNCTION(void, GLDrawBuffer, (struct GLContextIFace *Self, GLenum mode))
+DEFINE_PATCH_FUNCTION(void, GLEnd, (struct GLContextIFace *Self))
 
 
 void PatchedSwitchDisplay(struct GLContextIFace* self)
